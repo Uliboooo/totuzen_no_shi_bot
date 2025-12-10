@@ -112,9 +112,8 @@ pub async fn slash_execute(
         .options
         .iter()
         .find(|opt| opt.name == "x2")
-        .unwrap()
-        .value
-        .clone();
+        .map(|opt| opt.value.clone())
+        .unwrap_or(CommandDataOptionValue::Boolean(false));
 
     let c = if let (CommandDataOptionValue::String(cc), CommandDataOptionValue::Boolean(x2_mode)) =
         (input, input2)
