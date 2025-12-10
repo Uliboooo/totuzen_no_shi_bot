@@ -82,7 +82,7 @@ fn s2hukix2<T: AsRef<str>>(s: T) -> String {
         mul_str(&"Y^", max_width / 2 + 2),
         mul_str(&" ", gap / 2 - 1)
     );
-    let over_btm = format!("￣{}￣\n", mul_str(&"Y^", max_width / 2 + gap + 1));
+    let over_btm = format!("￣{}￣\n", mul_str(&"Y^", max_width / 2 + gap));
 
     let mut ss = String::new();
     ss.push_str(&format!("{}\n{}", &over_top, &top));
@@ -139,9 +139,22 @@ fn test_s2huki() {
     let foo = "突然の死";
     let bar = "foo\nbar\nfoobar";
 
-    println!("{}", s2huki(foo));
-    println!("{}", s2huki(bar));
-
-    println!("{}", s2hukix2(foo));
-    println!("{}", s2hukix2(bar));
+    assert_eq!(
+        s2huki(foo),
+        "＿人人人人人人＿\n＞ 突然の死 ＜\n￣Y^Y^Y^Y^Y^Y^￣\n"
+    );
+    assert_eq!(
+        s2huki(bar),
+        "＿人人人人人＿\n＞ foo    ＜\n＞ bar    ＜\n＞ foobar ＜\n￣Y^Y^Y^Y^Y^￣\n"
+    );
+    // println!("{}", s2huki(foo));
+    // println!("{}", s2huki(bar));
+    assert_eq!(
+        s2hukix2(foo),
+        "＿人人人人人人人人人＿\n＞ ＿人人人人人人＿ ＜\n＞＞ 突然の死    ＜＜\n＞ ￣Y^Y^Y^Y^Y^Y^￣ ＜\n￣Y^Y^Y^Y^Y^Y^Y^Y^￣\n"
+    );
+    assert_eq!(
+        s2hukix2(bar),
+        "＿人人人人人人人人＿\n＞ ＿人人人人人＿ ＜\n＞＞ foo       ＜＜\n＞＞ bar       ＜＜\n＞＞ foobar    ＜＜\n＞ ￣Y^Y^Y^Y^Y^￣ ＜\n￣Y^Y^Y^Y^Y^Y^Y^￣\n"
+    );
 }
