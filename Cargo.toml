@@ -1,0 +1,10 @@
+[package]
+name = "totuzen_no_shi_bot"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+unicode-width = "0.2.1"
+serenity = { version = "0.12", features = ["full"] }
+tokio = { version = "1.21.2", features = ["macros", "rt-multi-thread", "process", "time"] }
+dotenv = "0.15"
